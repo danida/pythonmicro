@@ -9,15 +9,17 @@ basePath: /v1.0
 paths:
   /bets/:
     get:
+      operationId: app.Api.read_bets
       responses:
         '200':
-          description: 'Fetch a list of asd'
+          description: 'Fetch a list of bets'
           schema:
             type: array
             items:
               $ref: '#/definitions/Bet'
   /teams/:
     get:
+      operationId: app.Api.read_teams
       responses:
         '200':
           description: 'Fetch a list of teams'
@@ -25,15 +27,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Team'
-  /fixtures/:
-    get:
-      responses:
-        '200':
-          description: 'Fetch a list of fixtures'
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Fixture'
+
 
 
 definitions:
