@@ -10,3 +10,5 @@ class Betservice(object):
         pass
     def read_bets(self) -> tuple:
         return Bet.query.all(), 200
+    def create_bet(self, u):
+        return db.add(u), 200

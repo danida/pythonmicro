@@ -17,6 +17,34 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Bet'
+  /bet:
+    post:
+      operationId: app.Api.create_bet
+      parameters:
+        - in: body
+          description: "asd"
+          name: id
+          schema:
+            type: integer
+
+        - name: odds
+          in: body
+          schema:
+            type: number
+
+        - name: fixture
+          in: body
+          schema:
+            type: number
+
+        - name: win
+          in: body
+          schema:
+            type: boolean
+
+      responses:
+        '200':
+          description: 'Ok'
   /teams/:
     get:
       operationId: app.Api.read_teams
@@ -39,6 +67,10 @@ definitions:
         format: int64
       fixture: {type: integer}
       win: {type: boolean}
+      odds:
+        type: number
+        format: float
+
   Team:
     type: object
     properties:
