@@ -22,26 +22,10 @@ paths:
       operationId: app.Api.create_bet
       parameters:
         - in: body
-          description: "asd"
-          name: id
+          description: "parameter"
+          name: bet
           schema:
-            type: integer
-
-        - name: odds
-          in: body
-          schema:
-            type: number
-
-        - name: fixture
-          in: body
-          schema:
-            type: number
-
-        - name: win
-          in: body
-          schema:
-            type: boolean
-
+            $ref: '#/definitions/Bet'
       responses:
         '200':
           description: 'Ok'
@@ -65,7 +49,10 @@ definitions:
       id:
         type: integer
         format: int64
-      fixture: {type: integer}
+      fixture:
+        type: integer
+        default: null
+
       win: {type: boolean}
       odds:
         type: number
