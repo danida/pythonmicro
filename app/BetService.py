@@ -12,8 +12,7 @@ class Betservice(object):
     def read_bets (self) -> tuple:
         return Bet.query.all(), 200
 
-    def create_bet (self, u: Bet):
-        print(u)
+    def createBet (self, u: Bet):
         db.session.add(u)
         db.session.commit()
         return 200

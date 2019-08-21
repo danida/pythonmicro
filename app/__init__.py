@@ -5,8 +5,9 @@ from connexion.resolver import RestyResolver
 from flask_injector import FlaskInjector
 db = SQLAlchemy()
 
-from app.Betservice import Betservice
+from app.BetService import Betservice
 from app.TeamService import TeamService
+from app.FixtureService import FixtureService
 from injector import Binder
 
 def configure(binder: Binder) -> Binder:
@@ -14,6 +15,8 @@ def configure(binder: Binder) -> Binder:
         Betservice())
     binder.bind( TeamService,
                  TeamService())
+    binder.bind(FixtureService,
+                FixtureService())
 
 
 
