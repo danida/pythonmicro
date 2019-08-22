@@ -19,6 +19,8 @@ class Fixture(db.Model):
     teamHome =db.Column(db.Integer,db.ForeignKey('team.id'))
     teamAway =db.Column(db.Integer,db.ForeignKey('team.id'))
     date = db.Column(db.DateTime,nullable=False)
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
 class Bet(db.Model):
@@ -28,6 +30,8 @@ class Bet(db.Model):
     odds = db.Column(db.Float)
     fixture = db.Column(db.Integer,db.ForeignKey('fixture.id'), nullable=True)
     win = db.Column(db.Boolean)
+    def as_dict(self):
+        return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
 

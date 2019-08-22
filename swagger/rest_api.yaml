@@ -17,9 +17,10 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Bet'
-  /bet:
+
+  /bet/create:
     post:
-      operationId: app.Api.create_bet
+      operationId: app.Api.createBet
       parameters:
         - in: body
           description: "parameter"
@@ -29,6 +30,40 @@ paths:
       responses:
         '200':
           description: 'Ok'
+
+  /bet/edit/{bet_id}:
+    put:
+      operationId: app.Api.editBet
+      parameters:
+        - in: body
+          name: bet
+          description: "parameter"
+          schema:
+            $ref: '#/definitions/Bet'
+
+        - in: path
+          name: bet_id
+          description: "The bet id"
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok'
+
+  /bet/delete/{bet_id}:
+    delete:
+      operationId: app.Api.deleteBet
+      parameters:
+        - in: path
+          name: bet_id
+          description: "The bet id"
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok'
+
+
   /teams/:
     get:
       operationId: app.Api.read_teams
@@ -39,7 +74,94 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Team'
+  /team:
+    post:
+      operationId: app.Api.createTeam
+      parameters:
+        - in: body
+          description: "parameter"
+          name: team
+          schema:
+            $ref: '#/definitions/Team'
+      responses:
+        '200':
+          description: 'Ok'
 
+  /team/{team_id}:
+    put:
+      operationId: app.Api.editTeam
+      parameters:
+        - in: body
+          name: team
+          description: "parameter"
+          schema:
+            $ref: '#/definitions/Team'
+
+        - in: path
+          name: team_id
+          description: "The team id"
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok'
+
+
+  /fixtures/:
+    get:
+      operationId: app.Api.read_fixtures
+      responses:
+        '200':
+          description: 'Fetch a list of teams'
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Fixture'
+
+  /fixture:
+    post:
+      operationId: app.Api.createFixture
+      parameters:
+        - in: body
+          description: "parameter"
+          name: fixture
+          schema:
+            $ref: '#/definitions/Fixture'
+      responses:
+        '200':
+          description: 'Ok'
+
+  /fixture/{fixture_id}:
+    put:
+      operationId: app.Api.editFixture
+      parameters:
+        - in: body
+          name: fixture
+          description: "parameter"
+          schema:
+            $ref: '#/definitions/Fixture'
+
+        - in: path
+          name: fixture_id
+          description: "The fixture id"
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok'
+
+  /fixture/delete/{fixture_id}:
+    delete:
+      operationId: app.Api.deleteFixture
+      parameters:
+        - in: path
+          name: fixture_id
+          description: "The fixture id"
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Ok'
 
 
 definitions:
