@@ -1,18 +1,11 @@
-import React from 'react'
+import * as React from 'react';
+import { render } from 'react-dom';
+import MainView from './views/index'
 
 
-type Props = {
 
-}
 
-type State = {
 
-}
+render(<MainView />, document.getElementById('main'));
 
-class App extends React.Component<Props, State> {
-  render(){
-    return (<div>asd</div>)
-  }
-}
 
-export default App;
