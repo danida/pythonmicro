@@ -2,6 +2,6 @@
 export type ActionType = {
     store: string,
     type: string,
-    payload?: any,
+    data?: any,
     meta?: any,
 }
