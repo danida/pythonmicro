@@ -1,64 +1,62 @@
 import Axios from "axios"
 import config from "../../config"
+import store from "../store/Store"
+import {FixtureType} from "../types/Fixture"
 
 
 export function loadFixtures (){
 
-    return (dispatch) =>{
-        return Axios.get(config.apiendpoint+"fixtures").then((res)=>
+    Axios.get(config.apiendpoint+"fixtures").then((res)=>
         {
-            dispatch(
+            store.dispatch(
                 {
                     type:"SET_FIXTURES",
                     fixtures:res.data
                 }
             )
         })
-    }
+    
 }
 
-export function saveFixture (fixture){
+export function saveFixture (fixture:FixtureType){
 
-    return (dispatch) =>{
-        return Axios.post(config.apiendpoint+"/fixture/",{
+   Axios.post(config.apiendpoint+"/fixture/",{
             fixture
         }).then((res)=>{
-            dispatch(
+            store.dispatch(
                 {
                     type:"CREATE_FIXTURES",
                     fixtures:res.data
                 }
             )
         })
-    }
+    
 }
 
-export function deleteFixture (fixture_id){
+export function deleteFixture (fixture_id:number){
 
-    return (dispatch) =>{
-        return Axios.delete(config.apiendpoint+"/fixture/"+fixture_id).then((res)=>{
-            dispatch(
+    Axios.delete(config.apiendpoint+"/fixture/"+fixture_id).then((res)=>{
+        store.dispatch(
                 {
                     type:"DELETE_FIXTURES",
                     fixtures:res.data
                 }
             )
         })
-    }
+    
 }
 
-export function editFixture(fixture_id,fixture){
+export function editFixture(fixture_id:number,fixture:FixtureType){
 
-    return (dispatch) =>{
-        return Axios.put(config.apiendpoint+"/fixture/"+fixture_id,{
+    Axios.put(config.apiendpoint+"/fixture/"+fixture_id,{
             fixture
         }).then((res)=>{
-            dispatch(
+            store.dispatch(
                 {
                     type:"EDIT_FIXTURES",
                     fixtures:res.data
                 }
             )
         })
-    }
+    
 }

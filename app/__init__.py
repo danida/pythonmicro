@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS
 import connexion
 from connexion.resolver import RestyResolver
 from flask_injector import FlaskInjector
@@ -27,6 +28,7 @@ def create_app():
     app.add_api('rest_api.yaml', resolver=RestyResolver('api'))
     #   app.config.from_object(app_config[config_name])
     app.app.config.from_pyfile('../config.py')
+    CORS(app.app)
     FlaskInjector(app=app.app,modules=[configure])
 
     db.init_app(app.app)

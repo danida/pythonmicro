@@ -35,6 +35,8 @@ const TeamStoreReducers = (state: TeamType[] = DefaultTeamState, action: ActionT
                     data
                 }
             }
+        default:
+            return {...state} 
     }
 
 

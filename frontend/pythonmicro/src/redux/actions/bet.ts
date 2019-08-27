@@ -1,64 +1,68 @@
 import Axios from "axios"
 import config from "../../config"
+import { BetType } from "../types/Bet";
+import * from 'redux/store'
+import store from "../store/Store"
 
 
 export function loadBets (){
 
-    return (dispatch) =>{
-        return Axios.get(config.apiendpoint+"bets").then((res)=>
+   Axios.get(config.apiendpoint+"bets").then((res)=>
         {
-            dispatch(
+
+            store.dispatch(
                 {
                     type:"SET_BETS",
                     bets:res.data
                 }
             )
+        }).catch((e)=>{
+            console.log(e)
         })
-    }
+    
 }
 
-export function saveBet (bet){
+export function saveBet (bet:BetType){
 
-    return (dispatch) =>{
-        return Axios.post(config.apiendpoint+"/bet/",{
+    Axios.post(config.apiendpoint+"/bet/",{
             bet
         }).then((res)=>{
-            dispatch(
+            store.dispatch(
                 {
                     type:"CREATE_BET",
                     bets:res.data
                 }
             )
+        }).catch((e)=>{
+            console.log(e)
         })
-    }
+    
 }
 
-export function deleteBet (bet_id){
+export function deleteBet (bet_id:number){
 
-    return (dispatch) =>{
-        return Axios.delete(config.apiendpoint+"/bet/"+bet_id).then((res)=>{
-            dispatch(
+    Axios.delete(config.apiendpoint+"/bet/"+bet_id).then((res)=>{
+            store.dispatch(
                 {
                     type:"DELETE_BET",
                     bets:res.data
                 }
             )
         })
-    }
+    
 }
 
-export function editBet(bet_id,bet){
+export function editBet(bet_id:number,bet:BetType){
 
-    return (dispatch) =>{
-        return Axios.put(config.apiendpoint+"/bet/"+bet_id,{
+    Axios.put(config.apiendpoint+"/bet/"+bet_id,{
             bet
         }).then((res)=>{
-            dispatch(
+            store.dispatch(
                 {
                     type:"EDIT_BET",
                     bets:res.data
                 }
             )
         })
-    }
+    
 }

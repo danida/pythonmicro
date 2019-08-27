@@ -34,6 +34,8 @@ const FixtureStoreReducers = (state: FixtureType[] = DefaultFixtureState, action
                     data
                 }
             }
+        default:
+            return {...state} 
     }
 
 
