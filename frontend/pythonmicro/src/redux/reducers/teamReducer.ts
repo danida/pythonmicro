@@ -9,18 +9,15 @@ const TeamStoreReducers = (state: TeamType[] = DefaultTeamState, action: ActionT
         case 'SET_TEAMS':
             return {
                 ...state,
-                teams: {
-                    data
-                }
+                ...data,
             }
+
         case 'DELETE_TEAM':
             return {
                 ...state,
-                teams: {
-                    data
-
-                }
+                ...data,                
             }
+            
         case 'CREATE_TEAM':
             return {
                 ...state,

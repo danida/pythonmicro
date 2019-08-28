@@ -1,45 +1,80 @@
 
 import * as React from 'react'
 import {connect} from "react-redux";
-import * as Lodash from 'lodash'
-import * as teamActions from '../../redux/actions/team'
+import * as betActions from '../../redux/actions/bet'
+import Lists from './components/Lists'
+import "../../assets/bet.scss";
+import BetModal from './components/Modals/BetModal';
+import Button from 'react-bootstrap/Button';
+
 
 type Props = {
-    //loadTeams:()=>void,
+    teams:Array<Object>|[],
+    bets:Array<Object>|[],
+    fixtures:Array<Object>|[],
 }
 
 type State = {
-    bets: any,
+    modalVisible:boolean,
 }
 
 
 
 
 class MainView extends React.Component<Props, State>{
+     static defaultProps: Props = {
+        teams:[],
+        bets:[],
+        fixtures:[],
+    }
+
+     state: State = {
+       modalVisible:false,
+    }   
 
     componentDidMount() {
         //console.log(this.props)
         //actions.default.betAction.loadBets()
-        
+        betActions.loadBets()
        // console.log(store.getState())
     }
 
     constructor(props:Props) {
         super(props);
+
     }
-    render() {
-        return Lodash.range(0, 1, 1).map((num:number) => {
-            return (
-                <button onClick={teamActions.loadTeams}>set teams</button>
-            )
+
+
+    ModalOpen= ()=>{
+        let visibility = !this.state.modalVisible
+        this.setState({
+            modalVisible:visibility,
         })
+    }
+    
+    render() {
+        console.log(this.state)
+        if (this.state===null){
+            return <div>NULL</div>
+        }
+            return (<div>
+                <Lists {...{bets:this.props.bets}}></Lists>
+                <Button onClick={this.ModalOpen}>Add Bet</Button>
+                <BetModal {...{visible:this.state.modalVisible}}></BetModal>
+                </div>
+            )
+        
     }
 }
 
-const mapStateToProps = ({ data = {}, isLoadingData = false }) => ({
-    data,
-    isLoadingData
-  });
+const mapStateToProps = (storeState:any) => {
+    return {
+        teams:storeState['teams'],
+        bets:storeState['bets'],
+        fixtures:storeState['fixtures']
+    }
+
+  };
 
 
 

@@ -8,15 +8,14 @@ const BetStoreReducers = (state: BetType[] = DefaultBetState, action: ActionType
     switch (action.type) {
         case 'SET_BETS':
             return {...state,
-                bets: {
-                    data
-            }
+            
+                    ...data
+            
         }
         case 'DELETE_BET':
             return {...state,
-                bets: {
-                    data
-            }
+                    ...data
+            
         }
         case 'CREATE_BET':
             return {...state,

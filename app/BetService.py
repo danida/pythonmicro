@@ -10,7 +10,10 @@ class Betservice(object):
         pass
 
     def read_bets (self) -> tuple:
-        return Bet.query.all(), 200
+        return [row.as_dict() for row in Bet.query.all()], 200
+
+    def get_bet(self,bet_id) -> Bet:
+        return Bet.query.filter_by(id=bet_id).one_or_none().as_dict()
 
     def createBet (self, u: Bet):
         db.session.add(u)

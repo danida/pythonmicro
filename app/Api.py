@@ -26,6 +26,9 @@ def editBet(data_provider: Betservice, bet: Bet, bet_id):
 def deleteBet(data_provider: Betservice, bet_id):
     data_provider.deleteBet(bet_id)
 
+@inject
+def getBet(data_provider: Betservice, bet_id):
+    return data_provider.get_bet(bet_id)
 
 @inject
 def read_teams(data_provider: TeamService) -> list:

@@ -13,7 +13,7 @@ export function loadBets (){
             store.dispatch(
                 {
                     type:"SET_BETS",
-                    bets:res.data
+                    data:res.data
                 }
             )
         }).catch((e)=>{

@@ -6,7 +6,7 @@ class FixtureService(object):
         pass
 
     def read_fixtures(self) -> tuple:
-        return Fixture.query.all(), 200
+        return [row.as_dict() for row in Fixture.query.all()], 200
 
     def createFixture(self, f: Fixture):
         db.session.add(f)

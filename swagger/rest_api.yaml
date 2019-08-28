@@ -63,6 +63,22 @@ paths:
         '200':
           description: 'Ok'
 
+  /bet/{bet_id}:
+    get:
+      operationId: app.Api.getBet
+      parameters:
+        - in: path
+          name: bet_id
+          description: "The bet id"
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: 'Read one bet'
+          schema:
+            type: object
+            $ref: '#/definitions/Bet'
+
 
   /teams/:
     get:

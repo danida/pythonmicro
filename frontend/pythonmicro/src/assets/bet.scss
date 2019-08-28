@@ -1,0 +1,62 @@
+body{
+    background-color: #114242;
+}
+
+.betModal{
+    &--hidden{
+    
+        transition:4s;
+        margin-left:130%;
+        width: 100%;
+        animation-name: fadeout;
+        animation-duration: 4s;    
+
+    }
+    &--visible{
+        animation-name: fadein;
+        animation-duration: 4s;    
+        transition:4s;
+        margin-left:70%;
+        width: 100%;
+
+    }
+}
+
+.row {
+    
+    .bet {
+        display:inline-block;
+        padding: 10px;
+        color:gold;
+        font-weight: bold;
+        width:100px;
+
+        span{
+            border:1px;
+            border-color: #FF0000;
+            padding: 1px;
+        }
+    }
+}
+@keyframes fadein {
+    from {
+        margin-left: 130%;
+        width: 100%; 
+      }
+    
+      to {
+        margin-left: 70%;
+        width: 100%;
+      }
+  }
+  @keyframes fadeout {
+    from {
+        margin-left: 70%;
+        width: 100%; 
+      }
+    
+      to {
+        margin-left: 130%;
+        width: 100%;
+      }
+  }
