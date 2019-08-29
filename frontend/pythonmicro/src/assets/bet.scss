@@ -3,6 +3,9 @@ body{
 }
 
 .betModal{
+    height: 300px;
+    background-color: grey;
+    display: block;
     &--hidden{
     
         transition:4s;
@@ -18,7 +21,61 @@ body{
         transition:4s;
         margin-left:70%;
         width: 100%;
+        * {
+            display:block;
+        }
+    }
+}
 
+.fixtureModal{
+    height: 300px;
+    background-color: grey;
+    display: block;
+    &--hidden{
+    
+        transition:4s;
+        margin-left:130%;
+        width: 100%;
+        animation-name: fadeout;
+        animation-duration: 4s;    
+
+    }
+    &--visible{
+        animation-name: fadein;
+        animation-duration: 4s;    
+        transition:4s;
+        margin-left:70%;
+        width: 100%;
+        * {
+            display:block;
+        }
+    }
+}
+
+.teamModal{
+    height: 300px;
+    background-color: grey;
+    display: table;
+    &--hidden{
+        display:inline-block;
+        transition:4s;
+        margin-left:130%;
+        width: 100%;
+        animation-name: fadeout;
+        animation-duration: 4s;    
+        
+    }
+    &--visible{
+        display:inline-block;
+
+        animation-name: fadein;
+        animation-duration: 4s;    
+        transition:4s;
+        margin-left:70%;
+        width: 100%;
+        * {
+            display:block;
+        }
     }
 }
 

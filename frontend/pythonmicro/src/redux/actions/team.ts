@@ -22,7 +22,8 @@ export function loadTeams() {
 export function saveTeam(team: teamType) {
 
     Axios.post(config.apiendpoint + "team", {
-        team
+        name:team.name,
+        league:team.league,
     }).then((res) => {
         store.dispatch(
             {

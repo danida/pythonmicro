@@ -9,9 +9,8 @@ const FixtureStoreReducers = (state: FixtureType[] = DefaultFixtureState, action
         case 'SET_FIXTURES':
             return {
                 ...state,
-                fixtures: {
-                    data
-                }
+                ...data
+                
             }
         case 'DELETE_FIXTURE':
             return {

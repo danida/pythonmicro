@@ -54,7 +54,7 @@ def read_fixtures(data_provider: FixtureService) -> list:
     return data_provider.read_fixtures()
 
 @inject
-def createFixture(data_provider: TeamService, fixture: Fixture):
+def createFixture(data_provider: FixtureService, fixture: Fixture):
     fixture = Fixture(**fixture)
     data_provider.createFixture(fixture)
 
@@ -64,5 +64,5 @@ def editFixture(data_provider: FixtureService, fixture: Fixture, fixture_id):
     data_provider.editTeam(fixture,fixture_id)
 
 @inject
-def deleteFixture(data_provider: TeamService, fixture_id):
+def deleteFixture(data_provider: FixtureService, fixture_id):
     data_provider.deleteFixture(fixture_id)

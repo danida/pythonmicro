@@ -11,7 +11,7 @@ export function loadFixtures (){
             store.dispatch(
                 {
                     type:"SET_FIXTURES",
-                    fixtures:res.data
+                    data:res.data
                 }
             )
         })
@@ -19,13 +19,16 @@ export function loadFixtures (){
 }
 
 export function saveFixture (fixture:FixtureType){
+    console.log(fixture)
+   Axios.post(config.apiendpoint+"fixture",{
+            teamHome : fixture.teamHome,
+            teamAway : fixture.teamAway,
+            date:'2019-08-20 00:00:00',
 
-   Axios.post(config.apiendpoint+"/fixture/",{
-            fixture
         }).then((res)=>{
             store.dispatch(
                 {
-                    type:"CREATE_FIXTURES",
+                    type:"CREATE_FIXTURE",
                     fixtures:res.data
                 }
             )
@@ -35,7 +38,7 @@ export function saveFixture (fixture:FixtureType){
 
 export function deleteFixture (fixture_id:number){
 
-    Axios.delete(config.apiendpoint+"/fixture/"+fixture_id).then((res)=>{
+    Axios.delete(config.apiendpoint+"fixture/"+fixture_id).then((res)=>{
         store.dispatch(
                 {
                     type:"DELETE_FIXTURES",

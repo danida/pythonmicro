@@ -2,10 +2,17 @@
 import * as React from 'react'
 import {connect} from "react-redux";
 import * as betActions from '../../redux/actions/bet'
+import * as teamActions from '../../redux/actions/team'
+import * as fixtureActions from '../../redux/actions/fixture'
+
+
 import Lists from './components/Lists'
 import "../../assets/bet.scss";
 import BetModal from './components/Modals/BetModal';
 import Button from 'react-bootstrap/Button';
+import FixtureModal from './components/Modals/FixtureModal';
+import TeamModal from './components/Modals/TeamModal';
+import Store from '../../redux/store/Store';
 
 
 type Props = {
@@ -16,6 +23,8 @@ type Props = {
 
 type State = {
     modalVisible:boolean,
+    modalFixtureVisibility:boolean,
+    modalTeamModal:boolean,
 }
 
 
@@ -30,12 +39,16 @@ class MainView extends React.Component<Props, State>{
 
      state: State = {
        modalVisible:false,
+       modalFixtureVisibility:false,
+       modalTeamModal:false,
     }   
 
     componentDidMount() {
         //console.log(this.props)
         //actions.default.betAction.loadBets()
         betActions.loadBets()
+        teamActions.loadTeams()
+        fixtureActions.loadFixtures()
        // console.log(store.getState())
     }
 
@@ -51,16 +64,49 @@ class MainView extends React.Component<Props, State>{
             modalVisible:visibility,
         })
     }
+
+    ModalFixtureOpen= ()=>{
+        let visibility = !this.state.modalFixtureVisibility
+        this.setState({
+            modalFixtureVisibility:visibility,
+        })
+    }
+
+    ModalTeamOpen= ()=>{
+        let visibility = !this.state.modalTeamModal
+        this.setState({
+            modalTeamModal:visibility,
+        })
+    }
+
+    AddingTeam = (team:any)=>{
+        teamActions.saveTeam(team)
+        betActions.loadBets()
+        teamActions.loadTeams()
+        fixtureActions.loadFixtures()
+    }
+    AddingFixture = (fixture:any)=>{
+        fixtureActions.saveFixture(fixture)
+        betActions.loadBets()
+        teamActions.loadTeams()
+        fixtureActions.loadFixtures()
+    }
+
     
     render() {
-        console.log(this.state)
         if (this.state===null){
             return <div>NULL</div>
         }
             return (<div>
                 <Lists {...{bets:this.props.bets}}></Lists>
                 <Button onClick={this.ModalOpen}>Add Bet</Button>
-                <BetModal {...{visible:this.state.modalVisible}}></BetModal>
+                <Button onClick={this.ModalFixtureOpen}>Add Fixture</Button>
+                <Button onClick={this.ModalTeamOpen}>Add Team</Button>
+
+
+                <BetModal {...{visible:this.state.modalVisible,fixtures:Store.getState()['fixtures'],teams:Store.getState()['teams']}}></BetModal>
+                <FixtureModal {...{onAddClick:this.AddingFixture,visible:this.state.modalFixtureVisibility, teams:Store.getState()['teams']}}></FixtureModal>
+                <TeamModal  {...{visible:this.state.modalTeamModal,onAddClick:this.AddingTeam}}></TeamModal>
                 </div>
             )
         
