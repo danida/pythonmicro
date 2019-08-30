@@ -1,17 +1,20 @@
 import { FixtureType } from '../types/Fixture'
 import { ActionType } from '../types/Action'
 import DefaultFixtureState from '../store/defaultFixtureState'
+import produce from 'immer'
 
 const FixtureStoreReducers = (state: FixtureType[] = DefaultFixtureState, action: ActionType) => {
     let data = action.data
-
+    console.log(action)
+    return produce ((state, draft) => {
     switch (action.type) {
         case 'SET_FIXTURES':
-            return {
-                ...state,
-                ...data
-                
-            }
+            console.log('SETTINGFIXTURES')
+            action.data.forEach((fixture:any) => {
+                console.log("SETTINGFIXTURES"+fixture)
+                draft['fixtures'][fixture['id']] = fixture
+            });
+            break;
         case 'DELETE_FIXTURE':
             return {
                 ...state,
@@ -20,11 +23,10 @@ const FixtureStoreReducers = (state: FixtureType[] = DefaultFixtureState, action
                 }
             }
         case 'CREATE_FIXTURE':
+            console.log("asdasd")
             return {
                 ...state,
-                fixtures: {
-                    data
-                }
+               
             }
         case 'EDIT_FIXTURE':
             return {
@@ -33,10 +35,9 @@ const FixtureStoreReducers = (state: FixtureType[] = DefaultFixtureState, action
                     data
                 }
             }
-        default:
-            return {...state} 
+       
     }
-
+    },state)
 
 }
 export default FixtureStoreReducers

@@ -103,7 +103,6 @@ class MainView extends React.Component<Props, State>{
                 <Button onClick={this.ModalFixtureOpen}>Add Fixture</Button>
                 <Button onClick={this.ModalTeamOpen}>Add Team</Button>
 
-
                 <BetModal {...{visible:this.state.modalVisible,fixtures:Store.getState()['fixtures'],teams:Store.getState()['teams']}}></BetModal>
                 <FixtureModal {...{onAddClick:this.AddingFixture,visible:this.state.modalFixtureVisibility, teams:Store.getState()['teams']}}></FixtureModal>
                 <TeamModal  {...{visible:this.state.modalTeamModal,onAddClick:this.AddingTeam}}></TeamModal>
