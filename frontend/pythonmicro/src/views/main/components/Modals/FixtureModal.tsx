@@ -39,9 +39,7 @@ class FixtureModal extends React.Component<Props, State> {
     }
 
     render() {
-        console.log(this.props)
         let className = this.props.visible ? 'fixtureModal fixtureModal--visible' : 'fixtureModal--hidden'
-        console.log(this.state)
         let teams = Object.keys(this.props.teams).map((team) => {
             return { label: this.props.teams[team]['name'], value: this.props.teams[team]['id'] }
         })

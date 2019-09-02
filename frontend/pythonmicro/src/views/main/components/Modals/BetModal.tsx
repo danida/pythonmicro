@@ -32,7 +32,6 @@ class BetModal extends React.Component<Props, State> {
         let fixtures = Object.keys(this.props.fixtures).map((fixture)=>{
             return {label:this.findTeam(this.props.fixtures[fixture]['teamHome'])['name']+'-'+this.findTeam(this.props.fixtures[fixture]['teamAway'])['name'], value:fixture}
         })
-        console.log(fixtures)
         let className = this.props.visible?'betModal betModal--visible':'betModal--hidden'
         return ( <div className={className}>
                 <input id="odds"></input>

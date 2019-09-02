@@ -29,7 +29,7 @@ export function saveFixture (fixture:FixtureType){
             store.dispatch(
                 {
                     type:"CREATE_FIXTURE",
-                    fixtures:res.data
+                    data:res.data
                 }
             )
         })
@@ -42,7 +42,7 @@ export function deleteFixture (fixture_id:number){
         store.dispatch(
                 {
                     type:"DELETE_FIXTURES",
-                    fixtures:res.data
+                    data:fixture_id
                 }
             )
         })
@@ -57,7 +57,7 @@ export function editFixture(fixture_id:number,fixture:FixtureType){
             store.dispatch(
                 {
                     type:"EDIT_FIXTURES",
-                    fixtures:res.data
+                    data:res.data
                 }
             )
         })
