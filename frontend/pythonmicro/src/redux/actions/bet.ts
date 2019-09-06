@@ -23,10 +23,14 @@ export function loadBets (){
 }
 
 export function saveBet (bet:BetType){
-
-    Axios.post(config.apiendpoint+"/bet/",{
-            bet
-        }).then((res)=>{
+    let fixture : number = bet.fixture
+    Axios.post(config.apiendpoint+"bet",
+            {
+            odds:bet.odds,
+            fixture:fixture,
+            win:bet.win,
+        }
+        ).then((res)=>{
             store.dispatch(
                 {
                     type:"CREATE_BET",
@@ -41,7 +45,7 @@ export function saveBet (bet:BetType){
 
 export function deleteBet (bet_id:number){
 
-    Axios.delete(config.apiendpoint+"/bet/"+bet_id).then((res)=>{
+    Axios.delete(config.apiendpoint+"bet/"+bet_id).then((res)=>{
             store.dispatch(
                 {
                     type:"DELETE_BET",
@@ -54,7 +58,7 @@ export function deleteBet (bet_id:number){
 
 export function editBet(bet_id:number,bet:BetType){
 
-    Axios.put(config.apiendpoint+"/bet/"+bet_id,{
+    Axios.put(config.apiendpoint+"bet/"+bet_id,{
             bet
         }).then((res)=>{
             store.dispatch(

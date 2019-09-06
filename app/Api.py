@@ -15,6 +15,7 @@ def read_bets(data_provider: Betservice) -> list:
 @inject
 def createBet(data_provider: Betservice, bet: Bet):
     bet = Bet(**bet)
+    print(bet)
     data_provider.createBet(bet)
 
 @inject

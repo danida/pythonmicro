@@ -5,7 +5,7 @@ import Select from 'react-select';
 export type Props = {
     visible: boolean,
     teams: Array<any>,
-    onAddClick: (fixture: any) => void,
+    onAddClick: (bet: any) => void,
 
 }
 

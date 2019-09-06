@@ -19,7 +19,6 @@ export function loadFixtures (){
 }
 
 export function saveFixture (fixture:FixtureType){
-    console.log(fixture)
    Axios.post(config.apiendpoint+"fixture",{
             teamHome : fixture.teamHome,
             teamAway : fixture.teamAway,

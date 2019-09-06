@@ -18,7 +18,7 @@ paths:
             items:
               $ref: '#/definitions/Bet'
 
-  /bet/create:
+  /bet:
     post:
       operationId: app.Api.createBet
       parameters:
