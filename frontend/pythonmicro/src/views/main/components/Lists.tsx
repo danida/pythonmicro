@@ -3,6 +3,7 @@ import Bet from './Bet'
 
 type Props = {
     bets: Object,
+    fixtures:Object,
 
 }
 
@@ -24,16 +25,16 @@ class List extends React.Component<Props, State> {
             ret.push(keysOfBets.splice(0,5))
         }
 
-        let asd  = ret.map((array)=>{
+        let result  = ret.map((array)=>{
               return array.map((key)=>{
                     return this.props.bets[key]
 
                 
             })
         })
-        console.log(asd)
-        return asd.map((row)=>{
+        return result.map((row)=>{
             return <div className={'row'}>{row.map((bet)=>{
+                
                 return <Bet {...{bet}}></Bet>
             })}</div>
         })

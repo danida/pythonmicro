@@ -104,7 +104,7 @@ class MainView extends React.Component<Props, State>{
             return <div>NULL</div>
         }
             return (<div>
-                <Lists {...{bets:this.props.bets}}></Lists>
+                <Lists {...{bets:this.props.bets,fixtures:this.props.fixtures}}></Lists>
                 <Button onClick={this.ModalOpen}>Add Bet</Button>
                 <Button onClick={this.ModalFixtureOpen}>Add Fixture</Button>
                 <Button onClick={this.ModalTeamOpen}>Add Team</Button>
