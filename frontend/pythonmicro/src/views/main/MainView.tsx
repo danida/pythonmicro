@@ -98,13 +98,22 @@ class MainView extends React.Component<Props, State>{
         fixtureActions.loadFixtures()
     }
 
+    EditBet = (bet:any)=>{
+        console.log("AND IT WORKS")
+        betActions.editBet(bet["id"] ,bet)
+        betActions.loadBets()
+        teamActions.loadTeams()
+        fixtureActions.loadFixtures()
+    }
+
+
     
     render() {
         if (this.state===null){
             return <div>NULL</div>
         }
             return (<div>
-                <Lists {...{bets:this.props.bets,fixtures:this.props.fixtures}}></Lists>
+                <Lists {...{bets:this.props.bets,fixtures:this.props.fixtures, onEditBet:this.EditBet}}></Lists>
                 <Button onClick={this.ModalOpen}>Add Bet</Button>
                 <Button onClick={this.ModalFixtureOpen}>Add Fixture</Button>
                 <Button onClick={this.ModalTeamOpen}>Add Team</Button>

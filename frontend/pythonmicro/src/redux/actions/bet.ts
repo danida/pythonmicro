@@ -57,10 +57,13 @@ export function deleteBet (bet_id:number){
 }
 
 export function editBet(bet_id:number,bet:BetType){
+    let fixture : number = bet.fixture
 
-    Axios.put(config.apiendpoint+"bet/"+bet_id,{
-            bet
-        }).then((res)=>{
+    Axios.put(config.apiendpoint+"bet/edit/"+bet_id,  {
+        odds:bet.odds,
+        fixture:fixture,
+        win:bet.win,
+    }).then((res)=>{
             store.dispatch(
                 {
                     type:"EDIT_BET",

@@ -4,7 +4,7 @@ import Bet from './Bet'
 type Props = {
     bets: Object,
     fixtures:Object,
-
+    onEditBet:(bet:any)=>void,
 }
 
 type State = {
@@ -35,7 +35,7 @@ class List extends React.Component<Props, State> {
         return result.map((row)=>{
             return <div className={'row'}>{row.map((bet)=>{
                 
-                return <Bet {...{bet}}></Bet>
+                return <Bet {...{bet:bet,onEditBet:this.props.onEditBet}}></Bet>
             })}</div>
         })
 

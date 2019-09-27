@@ -1,18 +1,22 @@
 import * as React from "react"
-
+import Switch from "react-switch";
 
 export type Props = {
-    bet: any
+    bet: any,
+    onEditBet:(bet:any)=>void
 }
 
 export type State = {
-    showDetails: boolean
+    showDetails: boolean,
+    yesOrNo:boolean,
+
 }
 
 class Bet extends React.Component<Props, State> {
 
     state: State = {
         showDetails: false,
+        yesOrNo: false,
     }
 
 
@@ -20,15 +24,23 @@ class Bet extends React.Component<Props, State> {
         super(props)
     }
 
+    handleChange = (checked:boolean)=>{
+        this.setState({
+            yesOrNo:checked,
+        })
+    }
+
+
     details = () => {
         if (this.state.showDetails){
+        let bet = this.props.bet
+        bet["win"] = this.state.yesOrNo
         return <div className="betDetailsModal">
 
             Did it win?
-            Yes:
-            <input type="checkbox" />
-            No:
-            <input type="checkbox" />
+            <Switch onChange={this.handleChange} checked={this.state.yesOrNo}></Switch>
+            <button onClick={(event)=>{event.stopPropagation();this.props.onEditBet(bet)}}>Ok</button>
+
             <button onClick={(event)=>{event.stopPropagation();this.onClickClose()}}>Close</button>
         </div>
         }
@@ -45,6 +57,9 @@ class Bet extends React.Component<Props, State> {
         this.setState({
             showDetails:false}
         );
+
+    }
+    onClickSave = () =>{
 
     }
 
