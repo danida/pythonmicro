@@ -24,12 +24,18 @@ export function loadBets (){
 
 export function saveBet (bet:BetType){
     let fixture : number = bet.fixture
+    let odds : number = bet.odds
     Axios.post(config.apiendpoint+"bet",
             {
-            odds:bet.odds,
-            fixture:fixture,
-            win:bet.win,
-        }
+                odds:odds,
+                fixture:fixture,
+                win:bet.win,
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
         ).then((res)=>{
             store.dispatch(
                 {

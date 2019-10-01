@@ -99,7 +99,6 @@ class MainView extends React.Component<Props, State>{
     }
 
     EditBet = (bet:any)=>{
-        console.log("AND IT WORKS")
         betActions.editBet(bet["id"] ,bet)
         betActions.loadBets()
         teamActions.loadTeams()
